@@ -1,10 +1,11 @@
 #include <iostream>
+#include <vector>
 #include <queue>
-#include <string.h> // memset
+#include <algorithm> // sort, fill
 
 using namespace std;
 
-bool map[1001][1001];
+vector<int> map[1001];
 bool visit[1001];
 int N, M, V; // 정점의 개수, 간선의 개수, 시작 정점 번호
 
@@ -12,8 +13,8 @@ void DFS(int v){
     visit[v] = true;
     cout << v << " ";
 
-    for(int i = 1; i <= N; i++){
-        if(map[v][i] && !visit[i])
+    for(int i : map[v]){
+        if(!visit[i])
             DFS(i);
     }
 }
@@ -28,8 +29,8 @@ void BFS(int v){
         cout << v << " ";
         q.pop();
 
-        for(int w = 1; w <= N; w++){
-            if(map[v][w] && !visit[w]){
+        for(int w : map[v]){
+            if(!visit[w]){
                 q.push(w);
                 visit[w] = true;
             }
@@ -43,12 +44,16 @@ int main(){
     for(int i=0; i<M; i++){
         int x, y;
         cin >> x >> y;
-        map[x][y] = map[y][x] = 1;
+        map[x].push_back(y);
+        map[y].push_back(x);
+    }
+    for(int i=1; i<=N; i++){
+        sort(map[i].begin(), map[i].end());
     }
 
     DFS(V);
     cout << endl;
-    memset(visit, false, sizeof(visit));
+    fill(visit, visit + N + 1, false);
     BFS(V);
 
     return 0;
