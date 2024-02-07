@@ -5,6 +5,7 @@
 ### 성능 요약
 
 메모리: 21584 KB, 시간: 372 ms - [JAVA] BufferedReader, StringTokenizer 활용
+
 메모리: 40920 KB, 시간: 660 ms - [JAVA] Scanner 활용
 
 ### 분류
