@@ -1,6 +1,8 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class Main {
     static boolean[][] map;
@@ -8,16 +10,19 @@ public class Main {
     static int N, M, V; // 정점의 개수, 간선의 개수, 시작 정점 번호
 
     public static void main(String[] args) throws Exception{
-        Scanner sc = new Scanner(System.in);        
-        
-        N = sc.nextInt();
-        M = sc.nextInt();
-        V = sc.nextInt();
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
+        V = Integer.parseInt(st.nextToken());
 
         map = new boolean[N+1][N+1];
         for(int i=0; i<M; i++){
-            int x = sc.nextInt();
-            int y = sc.nextInt();
+            st = new StringTokenizer(br.readLine());
+            int x = Integer.parseInt(st.nextToken());
+            int y = Integer.parseInt(st.nextToken());
+            
             map[x][y] = map[y][x] = true;
         }
 
@@ -26,8 +31,6 @@ public class Main {
         System.out.println();
         visit = new boolean[N+1];
         BFS(V);
-
-        sc.close();
     }
 
     public static void DFS(int v){
