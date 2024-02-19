@@ -5,33 +5,32 @@
 using namespace std;
 
 int K, N;
-long long nLen;
-vector<long long> kLen;
+long nLen;
+vector<long> kLen;
+// 랜선 길이의 범위를 고려해서 long형을 사용해야 함
 
-long long binarySearch(long long left, long long right){
-    if(left > right)
-        return nLen;
+long binarySearch(long left, long right){
+    while(left <= right){
+        long mid = (left+right)/2;
+        int cnt = 0;
 
-    long long mid = (left + right) / 2;
-    int cnt = 0;
+        for(int len : kLen){
+            cnt += len/mid;
+        }
 
-    for(int len : kLen){
-        cnt += len/mid;
+        if(cnt >= N){
+            nLen = mid;
+            left = mid + 1;
+        }
+        else
+            right = mid - 1;
     }
-         
-    // N개 이상으로 만들어지면 범위를 더 크게 잡기
-    if(cnt >= N) {
-        nLen = mid;
-        return binarySearch(mid + 1, right);
-    }   
-    // N개 미만으로 만들어지면 범위를 더 작게 잡기
-    else {
-    	return binarySearch(left, mid - 1);
-    }
+
+    return nLen;
 }
 
 int main(){
-    long long len;
+    long len;
 
     cin >> K >> N;
     for(int i=0; i<K; i++){
