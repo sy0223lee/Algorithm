@@ -5,14 +5,15 @@
 using namespace std;
 
 int K, N;
-long long nLen;
-vector<long long> kLen;
+long nLen;
+vector<long> kLen;
+// 랜선 길이를 고려하여 long형 선언
 
-long long binarySearch(long long left, long long right){
+long binarySearch(long left, long right){
     if(left > right)
         return nLen;
 
-    long long mid = (left + right) / 2;
+    long mid = (left + right) / 2;
     int cnt = 0;
 
     for(int len : kLen){
@@ -31,13 +32,14 @@ long long binarySearch(long long left, long long right){
 }
 
 int main(){
-    long long len;
+    long len;
 
     cin >> K >> N;
     for(int i=0; i<K; i++){
         cin >> len;
         kLen.push_back(len);
     }
+    // sort 사용해서 메모리 2020kb보다 많이 나오는 듯?
     sort(kLen.begin(), kLen.end(), greater<>()); // 내림차순 정렬
     
     cout << binarySearch(1, kLen[0]);
