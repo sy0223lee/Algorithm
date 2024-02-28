@@ -16,7 +16,8 @@ long binarySearch(long low, long high){
     long mid = (low + high) / 2;
     long len = 0; // 잘린 나무의 길이
     for(long i : height){
-        len += i > mid ? i-mid : 0;
+        if(i > mid)
+            len += i-mid;
     }
     
     if(len >= M){
