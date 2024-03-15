@@ -6,7 +6,7 @@ using namespace std;
 
 int main(){
     int n;
-    vector<int> nums;    // 1부터 n까지
+    int num = 1;
     vector<int> seq; // 주어진 수열
     vector<char> result; // +, - 결과
     stack<int> st;  // 스택
@@ -16,7 +16,6 @@ int main(){
         int tmp;
         cin >> tmp;
         seq.push_back(tmp);
-        nums.push_back(i);
     }
 
     st.push(0);
@@ -28,10 +27,10 @@ int main(){
             cout << "NO" << endl;
             return 0;
         }else{  // 스택.top보다 크면 수열[i]까지 push
-            for(int j=nums[0]; j<=seq[i]; j++){
+            for(int j=num; j<=seq[i]; j++){
                 st.push(j);
                 result.push_back('+');
-                nums.erase(nums.begin());
+                num++;
             }
             st.pop();
             result.push_back('-');
