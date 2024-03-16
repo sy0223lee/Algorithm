@@ -7,7 +7,6 @@ using namespace std;
 int main(){
     int N;  // 사람의 수
     vector<int> P;  // 각 사람이 인출하는데 걸리는 시간
-    vector<int> wait;   // 각 사람이 기다려야 하는 시간
     int time, total = 0;
 
     cin >> N;
