@@ -11,16 +11,11 @@ int main(){
         cards.push(i);
     }
 
-    int i = 0;
     while(cards.size() > 1){
-        if(i % 2 == 0){
-            cards.pop();
-        }else{
-            num = cards.front();
-            cards.pop();
-            cards.push(num);
-        }
-        i++;
+        cards.pop();
+        num = cards.front();
+        cards.pop();
+        cards.push(num);
     }
     cout << cards.front() << endl;
 
