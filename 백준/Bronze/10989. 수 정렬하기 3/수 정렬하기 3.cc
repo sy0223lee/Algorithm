@@ -15,10 +15,8 @@ int main(){
     }
 
     for(int i=1; i<10001; i++){
-        if(count[i] != 0){
-            for(int j=0; j<count[i]; j++){
-                cout << i << "\n";
-            }
+        for(int j=0; j<count[i]; j++){
+            cout << i << "\n";
         }
     }
     return 0;
