@@ -3,17 +3,14 @@ using namespace std;
 
 int main(){
     int N = 0;
-    string num = "666";
-    int count = 0;
+    int num = 665;
     cin >> N;
-    while(true){
-        if(num.find("666") != string::npos){
-            count++;
-            if(N == count){
-                break;
-            }
+    while(N > 0){
+        num++;
+        string strNum = to_string(num);
+        if(strNum.find("666") != string::npos){
+            N--;
         }
-        num = to_string(stoi(num) + 1);
     }
     cout << num << endl;
     return 0;
