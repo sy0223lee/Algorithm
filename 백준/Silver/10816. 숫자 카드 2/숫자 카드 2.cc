@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <vector>
 using namespace std;
-// upper_bound와 lower_bound를 이용한 이분탐색
+// upper_bound와 lower_bound를 이용한 이분탐색 -> map 이용한 것보다 메모리도 적게 사용하고 시간도 짧음
 int main(){
     // 시간 초과 해결
     ios::sync_with_stdio(0);
