@@ -22,18 +22,42 @@ int main(){
     
     ans = abs(N - 100);
     
-    for(int i=0; i<=1000000; i++){
-        int flag = true;
-        string tmp = to_string(i);
-        for(int j=0; j<tmp.length(); j++){
-            if(errBtn[tmp[j] - '0']){
+    // 작아지기
+    int sub = N;
+    while(sub >= 0){
+        string tmp = to_string(sub);
+        for(int i=0; i<tmp.length(); i++){
+            if(errBtn[tmp[i] - 48]){
+                sub--;
                 flag = false;
                 break;
             }
         }
         if(flag){
-            cnt = tmp.length() + abs(N - i);
+            cnt = tmp.length() + N - sub;
             ans = min(ans, cnt);
+            break;
+        }else{
+            flag = true;
+        }
+    }
+    // 커지기
+    int add = N;
+    while(add <= 1000000){
+        string tmp = to_string(add);
+        for(int i=0; i<tmp.length(); i++){
+            if(errBtn[tmp[i] - 48]){
+                add++;
+                flag = false;
+                break;
+            }
+        }
+        if(flag){
+            cnt = tmp.length() + add - N;
+            ans = min(ans, cnt);
+            break;
+        }else{
+            flag = true;
         }
     }
 
