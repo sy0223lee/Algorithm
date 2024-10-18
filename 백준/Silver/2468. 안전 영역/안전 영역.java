@@ -46,9 +46,9 @@ public class Main {
                         cnt++;
                         BFS(i, j, h);
                     }        
-                    answer = Math.max(answer, cnt);
                 }
-            }            
+            }   
+            answer = Math.max(answer, cnt);         
         }
         System.out.println(answer);
     }
