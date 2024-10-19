@@ -9,7 +9,8 @@ public class Main {
     static String[] board;
     static int[] dx = {1,0,-1,0};
     static int[] dy = {0,1,0,-1};
-    static Set<Character> cSet = new HashSet<>();
+    // static Set<Character> cSet = new HashSet<>(); // Set 사용 시 메모리 사용 증가
+    static boolean[] cArr = new boolean[26]; // 배열 사용 시 메모리 사용을 줄일 수 있음!
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -24,12 +25,13 @@ public class Main {
             board[i] = br.readLine();
         }
         // DFS
-        cSet.add(board[0].charAt(0));
         DFS(0, 0, 1);
         System.out.println(ans);
     }
 
     static void DFS(int x, int y, int cnt){
+        cArr[board[x].charAt(y) - 'A'] = true;
+
         for(int i=0; i<4; i++){
             int nx = x + dx[i];
             int ny = y + dy[i];
@@ -40,12 +42,11 @@ public class Main {
             }
 
             char nc = board[nx].charAt(ny);
-            if(!cSet.contains(nc)){
-                cSet.add(nc);
+            if(!cArr[nc - 'A']){
                 ans = Math.max(ans, cnt + 1);
                 DFS(nx, ny, cnt + 1);
                 // 백트레킹
-                cSet.remove(Character.valueOf(nc));
+                cArr[nc - 'A'] = false;
             }
         }
     }
